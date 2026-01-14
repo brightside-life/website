@@ -1,5 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================================
+     LIFE COUNTDOWN TIMER
+  ========================================================== */
+  const lifeTimer = document.getElementById("life-timer");
+  if (lifeTimer) {
+    // Start with remaining time in seconds (14:32:07 = 52327 seconds)
+    let remainingSeconds = 14 * 3600 + 32 * 60 + 7;
+
+    function updateTimer() {
+      if (remainingSeconds <= 0) {
+        remainingSeconds = 24 * 3600 - 1; // Reset to 23:59:59 for demo
+      }
+      remainingSeconds--;
+
+      const hours = Math.floor(remainingSeconds / 3600);
+      const minutes = Math.floor((remainingSeconds % 3600) / 60);
+      const seconds = remainingSeconds % 60;
+
+      lifeTimer.textContent =
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0");
+    }
+
+    setInterval(updateTimer, 1000);
+  }
+
+  /* ==========================================================
      MOBILE MENU TOGGLE
   ========================================================== */
   const menuButton =
